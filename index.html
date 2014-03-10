@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Defect Tracking System</title>
@@ -12,14 +12,17 @@
     <script src="assets/js/jquery.mobile.min.js"></script>
     <script type="text/javascript">
         function sendSMS(machineName, defect, operatorName) {
-                   var currDate = new Date();
-                    var dateTime = currDate.getDate() + '/' + currDate.getMonth() + '/' + currDate.getFullYear() + ' ' + currDate.getHours() + ':' + currDate.getMinutes() + ':' + currDate.getSeconds();
-           var url = "http://api.mvaayoo.com/mvaayooapi/MessageCompose?user=anees.hashmi@yahoo.com:kingarthur&senderID=TEST%20SMS&receipientno=8928821898,9421120402&msgtxt= Machine: " + machineName + ";Defect: " + defect + ";Operator:" + operatorName + ";Date:" + dateTime + "&state=2";
-        $.getJSON(url);
+            var currDate = new Date();
+            var dateTime = currDate.getDate() + '/' + currDate.getMonth() + '/' + currDate.getFullYear() + ' ' + currDate.getHours() + ':' + currDate.getMinutes() + ':' + currDate.getSeconds();
+            var url = "http://api.mvaayoo.com/mvaayooapi/MessageCompose?user=anees.hashmi@yahoo.com:kingarthur&senderID=TEST%20SMS&receipientno=8928821898,9421120402&msgtxt= Machine: " + machineName + ";Defect: " + defect + ";Operator:" + operatorName + ";Date:" + dateTime + ";Roll No.:" + $("#lblRollNo").val() + ";Length:" + (TotalSecond) / 10  + " m&state=2";
+            $.getJSON(url);
         }
         var machineDate;
-
+        var TotalSecond;
         function setMachineTime() {
+            $("#lblRollNo").val($("#txtRollNo").val());
+            $("#lblMachine").text("MX2234 - " + $("#lblRollNo").val());
+            $("#txtRollNo").val("");
             machineDate = new Date();
             timerCountdown();
         }
@@ -29,7 +32,7 @@
 
                 var now = new Date();
                 var difference = Math.floor((now.getTime() - machineDate.getTime()) / 1000);
-                var TotalSecond = difference;
+                TotalSecond = difference;
                 var seconds = fixIntegers(difference % 60);
                 difference = Math.floor(difference / 60);
 
@@ -65,7 +68,7 @@
         </div>
         <div role="main" class="ui-content">
             <h2>
-               DTS Login</h2>
+                DTS Login</h2>
             <input name="text-basic" id="lblUserId" value="" type="text" placeholder="User Name">
             <input name="password" id="lblpassword" value="" autocomplete="off" type="password"
                 placeholder="Password">
@@ -90,10 +93,12 @@
                 <li>Machine Name<span class="ui-li-count">MX2234</span></li>
                 <li>Shift<span class="ui-li-count"> 1st</span></li>
             </ul>
-            <a class="ui-shadow ui-btn ui-corner-all  btn-success btn-large"
-                href="#Dashboard" onclick="setMachineTime();"><i class="fa fa-cog"></i> Start Machine </a>
-                 <a href="#DefectList" class="ui-shadow ui-btn ui-corner-all btn-info  btn-success btn-large"
-                href="#Dashboard" ><i class="fa fa-bar-chart-o"></i> Defect History</a>
+            <input type="text" id="txtRollNo" value="" placeholder="Roll Number" />
+            <input type="hidden" id="lblRollNo" value="" />
+            <a class="ui-shadow ui-btn ui-corner-all  btn-success btn-large" href="#Dashboard"
+                onclick="setMachineTime();"><i class="fa fa-cog"></i>&nbsp;Start Machine </a>
+            <a href="#DefectList" class="ui-shadow ui-btn ui-corner-all btn-info  btn-success btn-large"
+                href="#Dashboard"><i class="fa fa-bar-chart-o"></i>&nbsp;Defect History</a>
         </div>
         <div data-role="footer" data-position="fixed">
             <h4>
@@ -104,15 +109,16 @@
     <div data-role="page" id="Dashboard">
         <div data-role="header" data-position="fixed">
             <label id="lblTimer" class="btn-success ui-corner-all">
-                <i class="fa fa-clock-o"></i> 00:00:00</label>
+                <i class="fa fa-clock-o"></i>00:00:00</label>
             <label id="lblLength" class="btn-success ui-corner-all">
-                <i class="fa fa-film"></i> 0.0 m</label>
+                <i class="fa fa-film"></i>0.0 m</label>
             <h4>
-                MX2234</h4>
+                <label id="lblMachine" title="MX2234-285" />
+            </h4>
         </div>
         <div role="main" class="ui-content">
             <a class="ui-btn btn-teal ui-corner-all btn-large" href="#popupDialog" data-rel="popup"
-                data-position-to="window" data-transition="pop" onclick="sendSMS('MX2234','Black Spot','Amit Kharya');">
+                data-position-to="window" data-transition="pop" onclick="sendSMS('MX2234','Black Spot','Amit Kharya','150');">
                 Black Spot <span class="ui-li-count">2</span></a> <a class="ui-btn btn-danger ui-corner-all btn-large"
                     href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop"
                     onclick="sendSMS('MX2234','Flow Mark','Amit Kharya');">Flow Mark</a> <a class="ui-btn btn-danger ui-corner-all btn-large"
@@ -144,13 +150,11 @@
         </div>
         <div data-role="footer" data-position="fixed">
             <a href="#WelcomePage" class="ui-btn ui-btn-left  btn-danger ui-corner-all " title="Stop Machine">
-                <i class="fa fa-cog"></i>
-                 Stop
-                 </a>
+                <i class="fa fa-cog"></i>&nbsp;Stop </a>
             <h4>
                 Defect Tracking System</h4>
             <a href="#LoginPage" class="ui-btn ui-btn-right  btn-warning ui-corner-all" title="Logoff">
-                Amit K. <i class="fa fa-power-off"></i></a>
+                Amit K.&nbsp;<i class="fa fa-power-off"></i></a>
         </div>
         <!-- /footer -->
     </div>
@@ -161,43 +165,42 @@
                 data-rel="back">Back</a>
             <h1>
                 Defect Tracking System</h1>
-            
         </div>
         <div role="main" class="ui-content">
-            <div data-role="collapsibleset" data-inset="true" data-collapsed-icon="carat-r" data-expanded-icon="carat-d" class="defectList">
-                <div data-role="collapsible" >
+            <div data-role="collapsibleset" data-inset="true" data-collapsed-icon="carat-r" data-expanded-icon="carat-d"
+                class="defectList">
+                <div data-role="collapsible">
                     <h3>
                         Black Spot <span class="ui-li-count">2</span></h3>
                     <ul data-role="listview" data-inset="false" data-count-theme="b">
-                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 12:13:25<span class="ui-li-count"><i class="fa fa-film"></i> 515.5 m</span></li>
-                          <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 10:34:19<span class="ui-li-count"><i class="fa fa-film"></i> 364.9 m</span></li>
-                        
+                        <li><i class="fa fa-user"></i>Amit K. [MX6244-215] <i class="fa fa-clock-o"></i>09/03/2014
+                            12:13:25<span class="ui-li-count"><i class="fa fa-film"></i> 515.5 m</span></li>
+                        <li><i class="fa fa-user"></i>Amit K. [MX2235-105] <i class="fa fa-clock-o"></i>09/03/2014
+                            10:34:19<span class="ui-li-count"><i class="fa fa-film"></i> 364.9 m</span></li>
                     </ul>
                 </div>
                 <div data-role="collapsible">
                     <h3>
                         Rust / Oil / Spray Mark <span class="ui-li-count">1</span></h3>
                     <ul data-role="listview" data-inset="false" data-count-theme="b">
-                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 13:23:02<span class="ui-li-count"><i class="fa fa-film"></i> 736.0 m</span></li>
-                        
-                  </ul>
+                        <li><i class="fa fa-user"></i>Amit K. [MX2434-87] <i class="fa fa-clock-o"></i>09/03/2014
+                            13:23:02<span class="ui-li-count"><i class="fa fa-film"></i> 736.0 m</span></li>
+                    </ul>
                 </div>
-                 <div data-role="collapsible">
+                <div data-role="collapsible">
                     <h3>
                         Warpage Line <span class="ui-li-count">1</span></h3>
                     <ul data-role="listview" data-inset="false" data-count-theme="b">
-                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 11:33:02<span class="ui-li-count"><i class="fa fa-film"></i> 448.3 m</span></li>
-                        
-                  </ul>
+                        <li><i class="fa fa-user"></i>Amit K. [MX1234-200] <i class="fa fa-clock-o"></i>09/03/2014
+                            11:33:02<span class="ui-li-count"><i class="fa fa-film"></i> 448.3 m</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
         <!-- /content -->
         <div data-role="footer" data-position="fixed">
-           
             <h4>
                 ITBees Technologies</h4>
-          
         </div>
         <!-- /footer -->
     </div>
