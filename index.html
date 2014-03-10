@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Defect Tracking System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <script type="text/javascript" charset="utf-8" src="phonegap-3.1.0.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <!-- your scripts here -->
+    <script src="assets/js/jquery.mobile.min.js"></script>
+    <script type="text/javascript">
+        function sendSMS(machineName, defect, operatorName) {
+            //          var currDate = new Date();
+            //          var dateTime = currDate.getDate() + '/' + currDate.getMonth() + '/' + currDate.getFullYear() + ' ' + currDate.getHours() + ':' + currDate.getMinutes() + ':' + currDate.getSeconds();
+            // var url = "http://api.mvaayoo.com/mvaayooapi/MessageCompose?user=anees.hashmi@yahoo.com:kingarthur&senderID=TEST%20SMS&receipientno=8928821898,9421120402&msgtxt= Machine: " + machineName + ";Defect: " + defect + ";Operator:" + operatorName + ";Date:" + dateTime + "&state=2";
+            //$.getJSON(url);
+        }
+        var machineDate;
+
+        function setMachineTime() {
+            machineDate = new Date();
+            timerCountdown();
+        }
+        function timerCountdown() {
+
+            setInterval(function () {
+
+                var now = new Date();
+                var difference = Math.floor((now.getTime() - machineDate.getTime()) / 1000);
+                var TotalSecond = difference;
+                var seconds = fixIntegers(difference % 60);
+                difference = Math.floor(difference / 60);
+
+                var minutes = fixIntegers(difference % 60);
+                difference = Math.floor(difference / 60);
+
+                var hours = fixIntegers(difference % 24);
+                difference = Math.floor(difference / 24);
+
+                var days = difference;
+
+                $("#lblTimer").html('<i class="fa fa-clock-o"></i> ' + hours + ':' + minutes + ':' + seconds);
+                $("#lblLength").html('<i class="fa fa-film"></i> ' + (TotalSecond) / 10 + " m");
+            }, 1000)
+        }
+
+        function fixIntegers(integer) {
+            if (integer < 0)
+                integer = 0;
+            if (integer < 10)
+                return "0" + integer;
+            return "" + integer;
+        }
+    </script>
+</head>
+<body id="Theme">
+    <!-- Login page -->
+    <div data-role="page" id="LoginPage">
+        <div data-role="header" data-position="fixed">
+            <img id="company-logo" src="https://f.cloud.github.com/assets/6071205/2367267/6293a9ca-a74f-11e3-9357-68c97f100fc4.png"
+                alt="Alternate Text" />
+            <!--<img id="Img1" src="assets/images/companylogo.png" alt="Alternate Text" />-->
+        </div>
+        <div role="main" class="ui-content">
+            <h2>
+               DTS Login</h2>
+            <input name="text-basic" id="lblUserId" value="" type="text" placeholder="User Name">
+            <input name="password" id="lblpassword" value="" autocomplete="off" type="password"
+                placeholder="Password">
+            <a class="ui-shadow ui-btn ui-corner-all ui-btn-icon-right ui-icon-carat-r btn-primary"
+                href="#WelcomePage">Submit</a> <a class="ui-shadow ui-btn ui-corner-all ui-btn-icon-right ui-icon-delete btn-danger">
+                    Exit</a>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h4>
+                ITBees Technologies</h4>
+        </div>
+    </div>
+    <!-- Welcome page -->
+    <div data-role="page" id="WelcomePage">
+        <div data-role="header">
+            <h1>
+                Defect Tracking System</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <ul data-role="listview" data-inset="true" data-divider-theme="b" class="detail">
+                <li data-role="list-divider">Welcome, Amit Kharya</li>
+                <li>Machine Name<span class="ui-li-count">MX2234</span></li>
+                <li>Shift<span class="ui-li-count"> 1st</span></li>
+            </ul>
+            <a class="ui-shadow ui-btn ui-corner-all  btn-success btn-large"
+                href="#Dashboard" onclick="setMachineTime();"><i class="fa fa-cog"></i> Start Machine </a>
+                 <a href="#DefectList" class="ui-shadow ui-btn ui-corner-all btn-info  btn-success btn-large"
+                href="#Dashboard" ><i class="fa fa-bar-chart-o"></i> Defect History</a>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h4>
+                ITBees Technologies</h4>
+        </div>
+    </div>
+    <!-- Dashboard page -->
+    <div data-role="page" id="Dashboard">
+        <div data-role="header" data-position="fixed">
+            <label id="lblTimer" class="btn-success ui-corner-all">
+                <i class="fa fa-clock-o"></i> 00:00:00</label>
+            <label id="lblLength" class="btn-success ui-corner-all">
+                <i class="fa fa-film"></i> 0.0 m</label>
+            <h4>
+                MX2234</h4>
+        </div>
+        <div role="main" class="ui-content">
+            <a class="ui-btn btn-teal ui-corner-all btn-large" href="#popupDialog" data-rel="popup"
+                data-position-to="window" data-transition="pop" onclick="sendSMS('MX2234','Black Spot','Amit Kharya');">
+                Black Spot <span class="ui-li-count">2</span></a> <a class="ui-btn btn-danger ui-corner-all btn-large"
+                    href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop"
+                    onclick="sendSMS('MX2234','Flow Mark','Amit Kharya');">Flow Mark</a> <a class="ui-btn btn-danger ui-corner-all btn-large"
+                        href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop"
+                        onclick="sendSMS('MX2234','Patch Mark','Amit Kharya');">Patch Mark</a>
+            <a class="ui-btn btn-teal ui-corner-all btn-large" href="#popupDialog" data-rel="popup"
+                data-position-to="window" data-transition="pop" onclick="sendSMS('MX2234','Rust / Oil / Spray Mark','Amit Kharya');">
+                Rust / Oil / Spray Mark <span class="ui-li-count">1</span></a> <a class="ui-btn btn-danger ui-corner-all btn-large"
+                    href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop"
+                    onclick="sendSMS('MX2234','Scratch / Stretch','Amit Kharya');">Scratch / Stretch</a>
+            <a class="ui-btn btn-warning ui-corner-all btn-large" href="#popupDialog" data-rel="popup"
+                data-position-to="window" data-transition="pop" onclick="sendSMS('MX2234','Warpage Line','Amit Kharya');">
+                Warpage Line <span class="ui-li-count">1</span></a> <a class="ui-btn btn-warning ui-corner-all btn-large"
+                    href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop"
+                    onclick="sendSMS('MX2234','Bubble','Amit Kharya');">Bubble</a>
+            <div data-role="popup" id="popupDialog" data-dismissible="false" style="max-width: 400px;">
+                <div data-role="header" data-theme="a">
+                    <h1>
+                        Defect Register</h1>
+                </div>
+                <div role="main" class="ui-content">
+                    <h4 class="ui-title">
+                        Are you sure you want to Register Defect?</h4>
+                    <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline btn-success" data-rel="back"
+                        data-transition="flow">Yes</a> <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline btn-danger"
+                            data-rel="back">No</a>
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <a href="#WelcomePage" class="ui-btn ui-btn-left  btn-danger ui-corner-all " title="Stop Machine">
+                <i class="fa fa-cog"></i>
+                 Stop
+                 </a>
+            <h4>
+                Defect Tracking System</h4>
+            <a href="#LoginPage" class="ui-btn ui-btn-right  btn-warning ui-corner-all" title="Logoff">
+                Amit K. <i class="fa fa-power-off"></i></a>
+        </div>
+        <!-- /footer -->
+    </div>
+    <!-- DefectList page -->
+    <div data-role="page" id="DefectList">
+        <div data-role="header">
+            <a href="#" class="ui-btn-left ui-btn ui-btn-inline btn-info ui-icon-back ui-btn-icon-left ui-corner-all"
+                data-rel="back">Back</a>
+            <h1>
+                Defect Tracking System</h1>
+            
+        </div>
+        <div role="main" class="ui-content">
+            <div data-role="collapsibleset" data-inset="true" data-collapsed-icon="carat-r" data-expanded-icon="carat-d" class="defectList">
+                <div data-role="collapsible" >
+                    <h3>
+                        Black Spot <span class="ui-li-count">2</span></h3>
+                    <ul data-role="listview" data-inset="false" data-count-theme="b">
+                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 12:13:25<span class="ui-li-count"><i class="fa fa-film"></i> 515.5 m</span></li>
+                          <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 10:34:19<span class="ui-li-count"><i class="fa fa-film"></i> 364.9 m</span></li>
+                        
+                    </ul>
+                </div>
+                <div data-role="collapsible">
+                    <h3>
+                        Rust / Oil / Spray Mark <span class="ui-li-count">1</span></h3>
+                    <ul data-role="listview" data-inset="false" data-count-theme="b">
+                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 13:23:02<span class="ui-li-count"><i class="fa fa-film"></i> 736.0 m</span></li>
+                        
+                  </ul>
+                </div>
+                 <div data-role="collapsible">
+                    <h3>
+                        Warpage Line <span class="ui-li-count">1</span></h3>
+                    <ul data-role="listview" data-inset="false" data-count-theme="b">
+                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 11:33:02<span class="ui-li-count"><i class="fa fa-film"></i> 448.3 m</span></li>
+                        
+                  </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /content -->
+        <div data-role="footer" data-position="fixed">
+           
+            <h4>
+                ITBees Technologies</h4>
+          
+        </div>
+        <!-- /footer -->
+    </div>
+    <!-- /page -->
+</body>
