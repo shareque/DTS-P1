@@ -12,10 +12,10 @@
     <script src="assets/js/jquery.mobile.min.js"></script>
     <script type="text/javascript">
         function sendSMS(machineName, defect, operatorName) {
-            //          var currDate = new Date();
-            //          var dateTime = currDate.getDate() + '/' + currDate.getMonth() + '/' + currDate.getFullYear() + ' ' + currDate.getHours() + ':' + currDate.getMinutes() + ':' + currDate.getSeconds();
-            // var url = "http://api.mvaayoo.com/mvaayooapi/MessageCompose?user=anees.hashmi@yahoo.com:kingarthur&senderID=TEST%20SMS&receipientno=8928821898,9421120402&msgtxt= Machine: " + machineName + ";Defect: " + defect + ";Operator:" + operatorName + ";Date:" + dateTime + "&state=2";
-            //$.getJSON(url);
+                   var currDate = new Date();
+                    var dateTime = currDate.getDate() + '/' + currDate.getMonth() + '/' + currDate.getFullYear() + ' ' + currDate.getHours() + ':' + currDate.getMinutes() + ':' + currDate.getSeconds();
+           var url = "http://api.mvaayoo.com/mvaayooapi/MessageCompose?user=anees.hashmi@yahoo.com:kingarthur&senderID=TEST%20SMS&receipientno=8928821898,9421120402&msgtxt= Machine: " + machineName + ";Defect: " + defect + ";Operator:" + operatorName + ";Date:" + dateTime + "&state=2";
+        $.getJSON(url);
         }
         var machineDate;
 
