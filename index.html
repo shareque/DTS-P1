@@ -71,7 +71,13 @@
             return "" + integer;
         }
 
-       
+        document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+            document.addEventListener("backbutton", onBackKeyDown, false);
+        }
+        function onBackKeyDown(e) {
+            e.preventDefault();
+        }
     </script>
 </head>
 <body id="dtsApp">
@@ -172,7 +178,7 @@
                             <i class="fa fa-times"></i></a>
                     </div>
                 </div>
-                <a class="ui-btn btn-success ui-corner-all btn-large" onclick="sendSMS('MX2234','Bubble','Amit Kharya');">
+                <a class="ui-btn btn-success ui-corner-all btn-large" onclick="sendSMS('MX2234',$('#txtDefectCode').val(),'Amit Kharya');">
                     Submit</a>
             </div>
             <div id="ListPanel" style="display: none;">
