@@ -1,4 +1,4 @@
-/* theme create by 
+﻿/* theme create by 
     Mirza shareque
     shareque@outlook.com
     create date:08-03-14
@@ -330,4 +330,78 @@
 .ui-btn-left + .ui-btn-left
 {
     left:110px;
+}
+
+/* DefectReview */
+#DefectReview
+{
+}
+.DefectReviewList
+{
+    margin: 0;
+    padding:0;
+}
+
+#DefectReview .DefectReviewList li
+{
+    list-style: none;
+    margin: 5px 0;
+    display: block;
+    height:50px;
+    padding: 5px 10px;
+    font-size: 30px;
+    line-height:50px;
+    -webkit-border-radius: .3125em;
+    border-radius: .3125em;
+}
+#DefectReview .DefectReviewList li:first-child
+{
+    height:100px;
+}
+.DefectReviewList li strong
+{
+    border-right:1px solid #fff;
+    margin-right: 10px;
+    padding-right:10px;
+}
+
+.DefectReviewList li .time-lapse
+{
+    display: block;
+    font-size: 18px;
+}
+
+#btnPause
+{
+    left:70px;
+}
+#btnSwitchKeypad
+{
+    left:130px;
+}
+
+#dtsApp .highlight1
+{
+    background:#F4F4F4;
+}
+
+#dtsApp .highlight2
+{
+    background: #E2E2E2;
+}
+
+/**/
+#dtsApp .ui-li-static.ui-collapsible > .ui-collapsible-heading {
+    margin: 0;
+}
+#dtsApp .ui-li-static.ui-collapsible {
+    padding: 0;
+    padding-right:0;
+}
+#dtsApp .ui-li-static.ui-collapsible > .ui-collapsible-heading > .ui-btn {
+    border-top-width: 0;
+}
+#dtsApp .ui-li-static.ui-collapsible > .ui-collapsible-heading.ui-collapsible-heading-collapsed > .ui-btn,
+#dtsApp .ui-li-static.ui-collapsible > .ui-collapsible-content {
+    border-bottom-width: 0;
 }

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>Defect Tracking System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="assets/css/jquery.mobile.css" />
     <link href="assets/css/style.css" rel="stylesheet" />
     <script type="text/javascript" charset="utf-8" src="phonegap-3.1.0.js"></script>
     <script src="assets/js/jquery.js"></script>
@@ -112,8 +112,8 @@
         <div role="main" class="ui-content">
             <ul data-role="listview" data-inset="true" data-divider-theme="b" class="detail">
                 <li data-role="list-divider">Welcome, Amit Kharya</li>
-                <li>Machine Name<span class="ui-li-count">MX2234</span></li>
-                <li>Shift<span class="ui-li-count"> 1st</span></li>
+                <li>Winder Name<span class="ui-li-count">MX2234</span></li>
+                <li>Winder Speed<span class="ui-li-count">300 m/hr</span></li>
             </ul>
             <input type="text" id="txtRollNo" value="" placeholder="Roll Number" />
             <fieldset data-role="controlgroup">
@@ -122,9 +122,9 @@
                     type="radio">
                 <label for="radio-choice-c">
                     Production</label>
-                <input name="radio-choice-b" id="radio-choice-d" value="Trail" type="radio">
+                <input name="radio-choice-b" id="radio-choice-d" value="Trial" type="radio">
                 <label for="radio-choice-d">
-                    Trail</label>
+                    Trial</label>
             </fieldset>
             <input type="hidden" id="lblRollNo" value="" />
             <a class="ui-shadow ui-btn ui-corner-all  btn-success btn-large" href="#Dashboard"
@@ -141,9 +141,9 @@
     <div data-role="page" id="Dashboard">
         <div data-role="header" data-position="fixed">
             <label id="lblTimer" class="btn-success ui-corner-all">
-                <i class="fa fa-clock-o"></i> 00:00:00</label>
+                <i class="fa fa-clock-o"></i>00:00:00</label>
             <label id="lblLength" class="btn-success ui-corner-all">
-                <i class="fa fa-film"></i> 0.0 m</label>
+                <i class="fa fa-film"></i>0.0 m</label>
             <h4>
                 MX2234</h4>
         </div>
@@ -170,7 +170,6 @@
                         <a href="#" class="ui-btn btn-primary ui-corner-all btn-large btn-dail">8</a></div>
                     <div class="ui-block-c">
                         <a href="#" class="ui-btn btn-primary ui-corner-all btn-large btn-dail">9</a></div>
-                   
                     <div class="ui-block-a">
                         <a href="#" class="ui-btn btn-primary ui-corner-all btn-large btn-dail">0</a></div>
                     <div class="ui-block-b">
@@ -216,11 +215,11 @@
         </div>
         <div data-role="footer" data-position="fixed">
             <a href="#WelcomePage" class="ui-btn ui-btn-left  btn-danger ui-corner-all " title="Stop Machine">
-                <i class="fa fa-cog"></i> Stop</a>
-                 <a href="#" class="ui-btn ui-btn-left   btn-primary ui-corner-all" onclick="SwitchKeypad();">
-                            <i class="fa fa-keyboard-o"></i></a>
-            <a href="#LoginPage" class="ui-btn ui-btn-right  btn-warning ui-corner-all" title="Logoff">
-                Amit K. <i class="fa fa-power-off"></i></a>
+                <i class="fa fa-stop"></i></a><a href="#" id="btnPause" class="ui-btn ui-btn-left  btn-warning ui-corner-all "
+                    title="Puase"><i class="fa fa-pause"></i></a><a href="#" id="btnSwitchKeypad" class="ui-btn ui-btn-left   btn-primary ui-corner-all"
+                        onclick="SwitchKeypad();"><i class="fa fa-keyboard-o"></i></a><a href="#LoginPage"
+                            class="ui-btn ui-btn-right  btn-warning ui-corner-all" title="Logoff">Amit K. <i
+                                class="fa fa-power-off"></i></a>
         </div>
         <!-- /footer -->
     </div>
@@ -233,35 +232,62 @@
                 Defect Tracking System</h1>
         </div>
         <div role="main" class="ui-content">
-            <div data-role="collapsibleset" data-inset="true" data-collapsed-icon="carat-r" data-expanded-icon="carat-d"
-                class="defectList">
-                <div data-role="collapsible">
+            <ul data-role="listview" data-inset="true" data-shadow="false" data-count-theme="a">
+                <li data-role="list-divider">Winder No: 2234</li>
+                <li data-role="collapsible" data-inset="false">
                     <h3>
                         Black Spot <span class="ui-li-count">2</span></h3>
-                    <ul data-role="listview" data-inset="false" data-count-theme="b">
-                        <li><i class="fa fa-user"></i>Amit K. <i class="fa fa-clock-o"></i>09/03/2014 12:13:25<span
+                    <ul data-role="listview" data-theme="b">
+                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 12:13:25<span
                             class="ui-li-count"><i class="fa fa-film"></i> 515.5 m</span></li>
-                        <li><i class="fa fa-user"></i>Amit K. <i class="fa fa-clock-o"></i>09/03/2014 10:34:19<span
+                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 10:34:19<span
                             class="ui-li-count"><i class="fa fa-film"></i> 364.9 m</span></li>
                     </ul>
-                </div>
-                <div data-role="collapsible">
-                    <h3>
-                        Rust / Oil / Spray Mark <span class="ui-li-count">1</span></h3>
-                    <ul data-role="listview" data-inset="false" data-count-theme="b">
-                        <li><i class="fa fa-user"></i>Amit K. <i class="fa fa-clock-o"></i>09/03/2014 13:23:02<span
+                </li>
+                <li data-role="collapsible" data-inset="false">
+                    <h2>
+                        Rust / Oil / Spray Mark <span class="ui-li-count">1</span></h2>
+                    <ul data-role="listview" data-theme="b">
+                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 13:23:02<span
                             class="ui-li-count"><i class="fa fa-film"></i> 736.0 m</span></li>
                     </ul>
-                </div>
-                <div data-role="collapsible">
-                    <h3>
-                        Warpage Line <span class="ui-li-count">1</span></h3>
-                    <ul data-role="listview" data-inset="false" data-count-theme="b">
-                        <li><i class="fa fa-user"></i>Amit K. <i class="fa fa-clock-o"></i>09/03/2014 11:33:02<span
+                </li>
+                <li data-role="collapsible" data-inset="false">
+                    <h2>
+                        Warpage Line <span class="ui-li-count">1</span></h2>
+                    <ul data-role="listview" data-theme="b">
+                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 11:33:02<span
                             class="ui-li-count"><i class="fa fa-film"></i> 448.3 m</span></li>
                     </ul>
-                </div>
-            </div>
+                </li>
+                 <li data-role="list-divider">Winder No: 3566</li>
+                <li data-role="collapsible" data-inset="false">
+                    <h3>
+                        Black Spot <span class="ui-li-count">2</span></h3>
+                    <ul data-role="listview" data-theme="b">
+                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 12:13:25<span
+                            class="ui-li-count"><i class="fa fa-film"></i> 515.5 m</span></li>
+                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 10:34:19<span
+                            class="ui-li-count"><i class="fa fa-film"></i> 364.9 m</span></li>
+                    </ul>
+                </li>
+                <li data-role="collapsible" data-inset="false">
+                    <h2>
+                        Rust / Oil / Spray Mark <span class="ui-li-count">1</span></h2>
+                    <ul data-role="listview" data-theme="b">
+                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 13:23:02<span
+                            class="ui-li-count"><i class="fa fa-film"></i> 736.0 m</span></li>
+                    </ul>
+                </li>
+                <li data-role="collapsible" data-inset="false">
+                    <h2>
+                        Warpage Line <span class="ui-li-count">1</span></h2>
+                    <ul data-role="listview" data-theme="b">
+                        <li><i class="fa fa-user"></i> Amit K. <i class="fa fa-clock-o"></i> 09/03/2014 11:33:02<span
+                            class="ui-li-count"><i class="fa fa-film"></i> 448.3 m</span></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
         <!-- /content -->
         <div data-role="footer" data-position="fixed">
